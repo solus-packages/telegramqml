@@ -1,9 +1,10 @@
 name       : telegramqml
-version    : 0.9.2
-release    : 1
+version    : 2.0.0
+release    : 2
 source     :
-    - https://github.com/Aseman-Land/TelegramQML/archive/v0.9.2.tar.gz : 16d6429fe180531af167dc44bcc799e82b08c9cfa88f1f635155dfcef2558397
+    - https://github.com/Aseman-Land/TelegramQML/archive/v2.0.0.tar.gz : 6fa519a58eebed0028eb34149198309ecf9901c8d706744d9eb197c92d485427
 license    : GPL-3.0
+component  : programming
 summary    : Telegram API tools for QtQml and Qml.
 description: |
     Telegram API tools for QtQml and Qml.
@@ -15,7 +16,11 @@ setup      : |
     mkdir build
 build      : |
     cd build
-    qmake -r .. PREFIX=$installdir/usr INSTALL_LIBS_PREFIX=$installdir/%libdir% INSTALL_HEADERS_PREFIX=$installdir/usr/include BUILD_MODE+=lib
+    qmake -r .. QMAKE_CFLAGS_ISYSTEM= CONFIG+=typeobjects \
+        BUILD_MODE+=lib \
+        PREFIX=$installdir/usr \
+        INSTALL_HEADERS_PREFIX=$installdir/usr/include \
+        INSTALL_LIBS_PREFIX=$installdir/%libdir%
     %make
 install    : |
     cd build
